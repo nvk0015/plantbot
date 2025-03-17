@@ -1,0 +1,1 @@
+# this file contains a rule base to explain the state of plant. 
