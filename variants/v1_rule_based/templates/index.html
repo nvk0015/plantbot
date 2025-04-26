@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Plant Interface</title>
+  <style>
+    body{font-family:sans-serif;max-width:600px;margin:auto;padding:2rem}
+    textarea{width:100%;height:6rem}
+    button{margin-top:1rem;padding:.5rem 1rem}
+    #reply{margin-top:2rem;white-space:pre-wrap;background:#f6f6f6;padding:1rem;border-radius:6px}
+  </style>
+</head>
+<body>
+  <h1>🌿 Talk to your Plant</h1>
+
+  <h3>Say hello</h3>
+  <button id="btn-hello">Hello!</button>
+
+  <h3>Chat</h3>
+  <textarea id="user-input" placeholder="Type max. two sentences…"></textarea>
+  <button id="btn-chat">Send</button>
+
+  <div id="reply"></div>
+
+<script>
+async function post(url, payload){
+  const r = await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+  return r.json();
+}
+
+document.getElementById("btn-hello").onclick = async () => {
+  const res = await post("/hello",{mode:"text"});
+  document.getElementById("reply").textContent = res.response || res.error;
+};
+
+document.getElementById("btn-chat").onclick = async () => {
+  const text = document.getElementById("user-input").value.trim();
+  const res  = await post("/chat",{mode:"text",user_input:text});
+  document.getElementById("reply").textContent = res.response || res.error;
+};
+</script>
+</body>
+</html>

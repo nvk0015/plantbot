@@ -1,0 +1,230 @@
+2025-04-26 20:09:45,049 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.103:5000
+2025-04-26 20:09:45,050 INFO [33mPress CTRL+C to quit[0m
+2025-04-26 20:09:45,215 INFO 192.168.0.53 - - [26/Apr/2025 20:09:45] "GET / HTTP/1.1" 200 -
+2025-04-26 20:09:46,715 INFO /hello invoked (mode=text)
+2025-04-26 20:09:46,742 INFO Prompt to LLM: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 46% (happy).  Plant speaks to the owner:
+2025-04-26 20:09:46,742 ERROR Exception on /hello [POST]
+Traceback (most recent call last):
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/app.py", line 24, in hello
+    response = backend.generate_message()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/backend.py", line 107, in generate_message
+    reply = call_api(prompt)
+            ^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/backend.py", line 68, in call_api
+    print("── RAW MODEL JSON ──\n", result.stdout, "\n── END RAW JSON ──")
+                                    ^^^^^^
+UnboundLocalError: cannot access local variable 'result' where it is not associated with a value
+2025-04-26 20:09:46,744 INFO 192.168.0.53 - - [26/Apr/2025 20:09:46] "[35m[1mPOST /hello HTTP/1.1[0m" 500 -
+2025-04-26 20:09:47,867 INFO /hello invoked (mode=text)
+2025-04-26 20:09:47,894 INFO Prompt to LLM: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 46% (happy).  Plant speaks to the owner:
+2025-04-26 20:09:47,894 ERROR Exception on /hello [POST]
+Traceback (most recent call last):
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/app.py", line 24, in hello
+    response = backend.generate_message()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/backend.py", line 107, in generate_message
+    reply = call_api(prompt)
+            ^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/backend.py", line 68, in call_api
+    print("── RAW MODEL JSON ──\n", result.stdout, "\n── END RAW JSON ──")
+                                    ^^^^^^
+UnboundLocalError: cannot access local variable 'result' where it is not associated with a value
+2025-04-26 20:09:47,895 INFO 192.168.0.53 - - [26/Apr/2025 20:09:47] "[35m[1mPOST /hello HTTP/1.1[0m" 500 -
+2025-04-26 20:09:48,008 INFO /hello invoked (mode=text)
+2025-04-26 20:09:48,035 INFO Prompt to LLM: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 46% (happy).  Plant speaks to the owner:
+2025-04-26 20:09:48,035 ERROR Exception on /hello [POST]
+Traceback (most recent call last):
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/app.py", line 24, in hello
+    response = backend.generate_message()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/backend.py", line 107, in generate_message
+    reply = call_api(prompt)
+            ^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/backend.py", line 68, in call_api
+    print("── RAW MODEL JSON ──\n", result.stdout, "\n── END RAW JSON ──")
+                                    ^^^^^^
+UnboundLocalError: cannot access local variable 'result' where it is not associated with a value
+2025-04-26 20:09:48,036 INFO 192.168.0.53 - - [26/Apr/2025 20:09:48] "[35m[1mPOST /hello HTTP/1.1[0m" 500 -
+2025-04-26 20:09:48,184 INFO /hello invoked (mode=text)
+2025-04-26 20:09:48,211 INFO Prompt to LLM: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 46% (happy).  Plant speaks to the owner:
+2025-04-26 20:09:48,212 ERROR Exception on /hello [POST]
+Traceback (most recent call last):
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/app.py", line 24, in hello
+    response = backend.generate_message()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/backend.py", line 107, in generate_message
+    reply = call_api(prompt)
+            ^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/backend.py", line 68, in call_api
+    print("── RAW MODEL JSON ──\n", result.stdout, "\n── END RAW JSON ──")
+                                    ^^^^^^
+UnboundLocalError: cannot access local variable 'result' where it is not associated with a value
+2025-04-26 20:09:48,212 INFO 192.168.0.53 - - [26/Apr/2025 20:09:48] "[35m[1mPOST /hello HTTP/1.1[0m" 500 -
+2025-04-26 20:09:48,371 INFO /hello invoked (mode=text)
+2025-04-26 20:09:48,398 INFO Prompt to LLM: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 46% (happy).  Plant speaks to the owner:
+2025-04-26 20:09:48,398 ERROR Exception on /hello [POST]
+Traceback (most recent call last):
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/app.py", line 24, in hello
+    response = backend.generate_message()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/backend.py", line 107, in generate_message
+    reply = call_api(prompt)
+            ^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/backend.py", line 68, in call_api
+    print("── RAW MODEL JSON ──\n", result.stdout, "\n── END RAW JSON ──")
+                                    ^^^^^^
+UnboundLocalError: cannot access local variable 'result' where it is not associated with a value
+2025-04-26 20:09:48,399 INFO 192.168.0.53 - - [26/Apr/2025 20:09:48] "[35m[1mPOST /hello HTTP/1.1[0m" 500 -
+2025-04-26 20:09:48,584 INFO /hello invoked (mode=text)
+2025-04-26 20:09:48,611 INFO Prompt to LLM: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 46% (happy).  Plant speaks to the owner:
+2025-04-26 20:09:48,612 ERROR Exception on /hello [POST]
+Traceback (most recent call last):
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 1511, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 919, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 917, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/poc_env/lib/python3.11/site-packages/flask/app.py", line 902, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/app.py", line 24, in hello
+    response = backend.generate_message()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/backend.py", line 107, in generate_message
+    reply = call_api(prompt)
+            ^^^^^^^^^^^^^^^^
+  File "/home/nvk15697/plants_speak/poc/variants/v1_rule_based/backend.py", line 68, in call_api
+    print("── RAW MODEL JSON ──\n", result.stdout, "\n── END RAW JSON ──")
+                                    ^^^^^^
+UnboundLocalError: cannot access local variable 'result' where it is not associated with a value
+2025-04-26 20:09:48,612 INFO 192.168.0.53 - - [26/Apr/2025 20:09:48] "[35m[1mPOST /hello HTTP/1.1[0m" 500 -
+2025-04-26 20:13:34,280 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.103:5000
+2025-04-26 20:13:34,280 INFO [33mPress CTRL+C to quit[0m
+2025-04-26 20:13:35,022 INFO 192.168.0.53 - - [26/Apr/2025 20:13:35] "GET / HTTP/1.1" 200 -
+2025-04-26 20:13:36,259 INFO 192.168.0.53 - - [26/Apr/2025 20:13:36] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-26 20:13:38,789 INFO /hello invoked (mode=text)
+2025-04-26 20:13:38,817 INFO Prompt: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 46% (happy).  Plant speaks to the owner:
+2025-04-26 20:13:40,055 INFO /hello invoked (mode=text)
+2025-04-26 20:13:40,083 INFO Prompt: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 46% (happy).  Plant speaks to the owner:
+2025-04-26 20:13:40,350 INFO /hello invoked (mode=text)
+2025-04-26 20:13:40,377 INFO Prompt: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 46% (happy).  Plant speaks to the owner:
+2025-04-26 20:13:46,047 ERROR curl failed: rc=-2 stderr=
+2025-04-26 20:13:46,047 INFO Reply: curl error: non-zero exit code
+2025-04-26 20:13:46,048 INFO 192.168.0.53 - - [26/Apr/2025 20:13:46] "POST /hello HTTP/1.1" 200 -
+2025-04-26 20:19:35,753 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.103:5000
+2025-04-26 20:19:35,753 INFO [33mPress CTRL+C to quit[0m
+2025-04-26 20:19:36,444 INFO 192.168.0.53 - - [26/Apr/2025 20:19:36] "GET / HTTP/1.1" 200 -
+2025-04-26 20:19:37,748 INFO 192.168.0.53 - - [26/Apr/2025 20:19:37] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-26 20:19:38,618 INFO /hello invoked (mode=text)
+2025-04-26 20:19:38,647 INFO Prompt: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 45% (happy).  Plant speaks to the owner:
+2025-04-26 20:19:38,660 INFO Reply: Could not find model reply in its JSON.
+2025-04-26 20:19:38,661 INFO 192.168.0.53 - - [26/Apr/2025 20:19:38] "POST /hello HTTP/1.1" 200 -
+2025-04-26 20:23:00,092 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.103:5000
+2025-04-26 20:23:00,092 INFO [33mPress CTRL+C to quit[0m
+2025-04-26 20:23:00,271 INFO 192.168.0.53 - - [26/Apr/2025 20:23:00] "GET / HTTP/1.1" 200 -
+2025-04-26 20:23:01,587 INFO /hello invoked (mode=text)
+2025-04-26 20:23:01,614 INFO Prompt: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 46% (happy).  Plant speaks to the owner:
+2025-04-26 20:23:01,623 INFO Reply: Could not find model reply in its JSON.
+2025-04-26 20:23:01,623 INFO 192.168.0.53 - - [26/Apr/2025 20:23:01] "POST /hello HTTP/1.1" 200 -
+2025-04-26 20:38:21,313 INFO Opening browser at http://192.168.0.103:5000
+2025-04-26 20:38:22,229 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.103:5000
+2025-04-26 20:38:22,230 INFO [33mPress CTRL+C to quit[0m
+2025-04-26 20:38:22,423 INFO 192.168.0.53 - - [26/Apr/2025 20:38:22] "GET / HTTP/1.1" 200 -
+2025-04-26 20:38:40,159 INFO Opening browser at http://192.168.0.103:5000
+2025-04-26 20:38:44,363 INFO [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.0.103:5000
+2025-04-26 20:38:44,363 INFO [33mPress CTRL+C to quit[0m
+2025-04-26 20:38:45,053 INFO 192.168.0.53 - - [26/Apr/2025 20:38:45] "GET / HTTP/1.1" 200 -
+2025-04-26 20:38:46,362 INFO 192.168.0.53 - - [26/Apr/2025 20:38:46] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-04-26 20:38:47,444 INFO /hello invoked (mode=text)
+2025-04-26 20:38:47,472 INFO Prompt: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 46% (happy).  Plant speaks to the owner:
+2025-04-26 20:38:47,480 ERROR Model returned error: model 'qwen:0.5b' not found
+2025-04-26 20:38:47,480 INFO Reply: Model error: model 'qwen:0.5b' not found
+2025-04-26 20:38:47,480 INFO 192.168.0.53 - - [26/Apr/2025 20:38:47] "POST /hello HTTP/1.1" 200 -
+2025-04-26 20:38:47,641 INFO /hello invoked (mode=text)
+2025-04-26 20:38:47,669 INFO Prompt: You are a houseplant speaking in first person to your owner. I currently feel *highly stressed* because:  - temperature is 20.7°C (happy),  - soil moisture is 0% (highly stressed),  - humidity is 46% (happy).  Plant speaks to the owner:
+2025-04-26 20:38:47,677 ERROR Model returned error: model 'qwen:0.5b' not found
+2025-04-26 20:38:47,677 INFO Reply: Model error: model 'qwen:0.5b' not found
+2025-04-26 20:38:47,678 INFO 192.168.0.53 - - [26/Apr/2025 20:38:47] "POST /hello HTTP/1.1" 200 -
