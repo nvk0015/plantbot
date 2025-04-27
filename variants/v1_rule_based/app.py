@@ -27,13 +27,14 @@ def hello():
     mode = request.json.get("mode", "text")
     logging.info("/hello invoked (mode=%s)", mode)
 
-    response = backend.generate_message()
+    result = backend.generate_message()
+    text, emoji = result["response"], result["emoji"]
 
     if mode == "speak":
-        utils.speak_text(response)
+        utils.speak_text(text)
         logging.info("Speaking done.")
 
-    return jsonify({"response": response})
+    return jsonify({"response": text, "emoji": emoji})
 
 @app.route("/chat", methods=["POST"])
 def chat():
@@ -45,16 +46,16 @@ def chat():
     if user_input and len(user_input.split(". ")) > 2:
         return jsonify({"error": "Please enter no more than two sentences."}), 400
 
-    response = backend.generate_message(user_prompt=user_input or None)
+    result = backend.generate_message(user_prompt=user_input or None)
+    text, emoji = result["response"], result["emoji"]
 
     if mode == "speak":
-        utils.speak_text(response)
+        utils.speak_text(text)
         logging.info("Speaking done.")
 
-    return jsonify({"response": response})
+    return jsonify({"response": text, "emoji": emoji})
 
 if __name__ == "__main__":
-    # Open browser automatically on LAN IP
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
         s.connect(("10.255.255.255", 1))

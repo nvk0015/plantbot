@@ -1,3 +1,4 @@
+<!-- /home/nvk15697/plants_speak/poc/variants/v1_rule_based/templates/index.html -->  
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     body{font-family:sans-serif;max-width:600px;margin:auto;padding:2rem}
     textarea{width:100%;height:6rem}
     button{margin-top:1rem;padding:.5rem 1rem}
-    #reply{margin-top:2rem;white-space:pre-wrap;background:#f6f6f6;padding:1rem;border-radius:6px}
+    #reply{margin-top:2rem;white-space:pre-wrap;background:#f6f6f6;padding:1rem;border-radius:6px;font-size:1.2rem}
   </style>
 </head>
 <body>
@@ -30,13 +31,15 @@ async function post(url, payload){
 
 document.getElementById("btn-hello").onclick = async () => {
   const res = await post("/hello",{mode:"text"});
-  document.getElementById("reply").textContent = res.response || res.error;
+  const out = res.error ? res.error : `${res.emoji}  ${res.response}`;
+  document.getElementById("reply").textContent = out;
 };
 
 document.getElementById("btn-chat").onclick = async () => {
   const text = document.getElementById("user-input").value.trim();
   const res  = await post("/chat",{mode:"text",user_input:text});
-  document.getElementById("reply").textContent = res.response || res.error;
+  const out = res.error ? res.error : `${res.emoji}  ${res.response}`;
+  document.getElementById("reply").textContent = out;
 };
 </script>
 </body>
