@@ -1,4 +1,4 @@
-# sensors/main.py
+# /home/nvk15697/plants_speak/poc/sensors/main.py
 from .soil_moisture_sensor import get_soil_moisture_pct
 from .bme280_sensor        import get_bme_readings
 

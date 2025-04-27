@@ -1,3 +1,4 @@
+# /home/nvk15697/plants_speak/poc/sensors/bme280_sensor.py
 """
 Return (temperature_c, humidity_pct, pressure_hpa).
 

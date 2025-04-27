@@ -1,4 +1,4 @@
-# variants/v1_rule_based/app.py
+# /home/nvk15697/plants_speak/poc/variants/v1_rule_based/app.py
 from flask import Flask, render_template, request, jsonify
 import backend
 import utils
