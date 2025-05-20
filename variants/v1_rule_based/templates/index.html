@@ -1,46 +1,197 @@
-<!-- /home/nvk15697/plants_speak/poc/variants/v1_rule_based/templates/index.html -->  
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <title>Plant Interface</title>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>🌿 Plant Chat</title>
   <style>
-    body{font-family:sans-serif;max-width:600px;margin:auto;padding:2rem}
-    textarea{width:100%;height:6rem}
-    button{margin-top:1rem;padding:.5rem 1rem}
-    #reply{margin-top:2rem;white-space:pre-wrap;background:#f6f6f6;padding:1rem;border-radius:6px;font-size:1.2rem}
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      box-sizing: border-box;
+    }
+    h1 {
+      text-align: center;
+      margin: 0 0 1rem;
+    }
+    #chat {
+      flex: 1 1 auto;
+      overflow-y: auto;
+      padding: .75rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fafafa;
+      margin-bottom: 1rem;
+    }
+    .bubble {
+      max-width: 80%;
+      margin: .5rem 0;
+      padding: .75rem 1rem;
+      border-radius: 16px;
+      line-height: 1.4;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    .user {
+      background: #007bff;
+      color: #fff;
+      align-self: flex-end;
+      border-bottom-right-radius: 4px;
+    }
+    .plant {
+      background: #e2ffe2;
+      color: #033;
+      align-self: flex-start;
+      border-bottom-left-radius: 4px;
+    }
+    #input-area {
+      display: flex;
+      gap: .5rem;
+      flex-wrap: wrap;
+    }
+    #user-input {
+      flex: 1 1 auto;
+      padding: .75rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      resize: none;
+      min-height: 3rem;
+      box-sizing: border-box;
+    }
+    button {
+      padding: .5rem 1rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    #btn-hello {
+      background: #17a2b8;
+      color: #fff;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+    #btn-talk {
+      background: #ffc107;
+      color: #000;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+    #send-text {
+      background: #28a745;
+      color: #fff;
+    }
+    #send-speak {
+      background: #20c997;
+      color: #fff;
+    }
+    @media(max-width:600px) {
+      .bubble { max-width: 90%; font-size: .9rem }
+      #user-input { min-height: 4rem }
+      #send-text, #send-speak { width: 100% }
+    }
   </style>
 </head>
 <body>
-  <h1>🌿 Talk to your Plant</h1>
+  <h1>🌿 Talk to Your Plant</h1>
 
-  <h3>Say hello</h3>
-  <button id="btn-hello">Hello!</button>
+  <!-- Say Hello and Talk buttons -->
+  <button id="btn-hello">👋 Say Hello</button>
+  <select id="lang-select">
+    <option value="en">English</option>
+    <option value="de">Deutsch</option>
+  </select>
+  <button id="btn-talk">🔊 Talk</button>
 
-  <h3>Chat</h3>
-  <textarea id="user-input" placeholder="Type max. two sentences…"></textarea>
-  <button id="btn-chat">Send</button>
+  <!-- Chat history -->
+  <div id="chat"></div>
 
-  <div id="reply"></div>
+  <!-- Input area with two send-buttons -->
+  <div id="input-area">
+    <textarea id="user-input" placeholder="Type your message…"></textarea>
+    <button id="send-text">Send</button>
+    <button id="send-speak">Send 🔊</button>
+  </div>
 
-<script>
-async function post(url, payload){
-  const r = await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
-  return r.json();
-}
+  <script>
+    const chat    = document.getElementById("chat");
+    const input   = document.getElementById("user-input");
+    const langSel = document.getElementById("lang-select");
 
-document.getElementById("btn-hello").onclick = async () => {
-  const res = await post("/hello",{mode:"text"});
-  const out = res.error ? res.error : `${res.emoji}  ${res.response}`;
-  document.getElementById("reply").textContent = out;
-};
+    function append(role, text) {
+      const d = document.createElement("div");
+      d.className = "bubble " + role;
+      d.textContent = text;
+      chat.appendChild(d);
+      chat.scrollTop = chat.scrollHeight;
+    }
 
-document.getElementById("btn-chat").onclick = async () => {
-  const text = document.getElementById("user-input").value.trim();
-  const res  = await post("/chat",{mode:"text",user_input:text});
-  const out = res.error ? res.error : `${res.emoji}  ${res.response}`;
-  document.getElementById("reply").textContent = out;
-};
-</script>
+    async function post(url, payload) {
+      const r = await fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      return r.json();
+    }
+
+    // 👋 Say Hello
+    document.getElementById("btn-hello").onclick = async () => {
+      append("user", "👋 Hello!");
+      const res = await post("/hello", { mode: "text" });
+      append("plant", `${res.emoji}  ${res.response}`);
+    };
+
+    // 🔊 Talk (just sensor-based)
+    document.getElementById("btn-talk").onclick = async () => {
+      const lang = langSel.value;
+      append("user", "🔊 Talk (" + lang + ")");
+      const res = await post("/hello", { mode: "speak", lang });
+      append("plant", `${res.emoji}  ${res.response}`);
+    };
+
+    // Unified send function
+    async function sendMessage(message, speak) {
+      append("user", message);
+      input.value = "";
+      const res = await post("/chat", {
+        mode: speak ? "speak" : "text",
+        lang: langSel.value,
+        user_input: message
+      });
+      if (res.error) {
+        append("plant", "❗ " + res.error);
+      } else {
+        append("plant", `${res.emoji}  ${res.response}`);
+      }
+    }
+
+    // Send (text only)
+    document.getElementById("send-text").onclick = () => {
+      const text = input.value.trim();
+      if (!text) return;
+      sendMessage(text, false);
+    };
+
+    // Send & Speak
+    document.getElementById("send-speak").onclick = () => {
+      const text = input.value.trim();
+      if (!text) return;
+      sendMessage(text, true);
+    };
+
+    // Allow Enter to send text-only (Shift+Enter for newline)
+    input.addEventListener("keydown", e => {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
+        document.getElementById("send-text").click();
+      }
+    });
+  </script>
 </body>
 </html>

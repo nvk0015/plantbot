@@ -1,0 +1,1 @@
+1. i am running on raspi5. improving my latency time and faster the process, ->  achieve this
