@@ -3,17 +3,28 @@
 
 import random
 
-# Map plant overall mood to a small set of emojis
 _mood_to_emojis = {
-    "highly_stressed":     ["😱", "🥀"],
-    "moderately_stressed": ["😟", "🍂"],
-    "happy":               ["😄", "🌿"],
-    "mixed":               ["🤔", "🌱"],
+    "highly_stressed":     ["😱", "😩"],
+    "moderately_stressed": ["😟"],
+    "happy":               ["😄", "😊"],
+    "mixed":               ["🤔", "😐"],
+    "very_happy":          ["😁"],
+    "very_moist":          ["💧", "🌊"],
+    "very_dry":            ["🌵", "🍂"],
+    "very_hot":            ["🔥", "☀️"],
+    "very_cold":           ["❄️", "☃️"],
+    "very_humid":          ["🌫️", "💧"],
+    "very_dry_air":        ["🌬️", "🍃"],
+    "light_deprived":      ["🌑", "🌒"],
+    "very_dark":           ["🌑"],
+    "lightly_dark":        ["🌘"],
+    "ambient":             ["☁️", "🌥️"],
+    "sunny":               ["☀️", "🌞"],
+    "very_sunny":          ["🌞", "😎"],
+    "person_interacting":  ["❤", "💕", "🤝"],
+    "person_approaching":  ["👣", "👥", "👀"],
+    "person_far_away":     ["👋", "🚶‍♂️"],
 }
 
-
-def get_emoji(mood: str) -> str:
-    """
-    Return a random emoji for the given mood, or ❓ if unknown.
-    """
+def get_emoji(mood):
     return random.choice(_mood_to_emojis.get(mood, ["❓"]))

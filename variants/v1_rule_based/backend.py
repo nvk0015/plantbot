@@ -1,4 +1,4 @@
-# /home/nvk15697/.../backend.py
+# variants/v1_rule_based/backend.py
 import os, sys, logging, requests
 import expressions_store, prompt_engineering
 
@@ -52,8 +52,8 @@ def generate_message(user_prompt: str | None = None) -> dict:
     reply = call_api(prompt)
     logging.info("Reply: %s", reply)
 
-    emoji = expressions_store.get_emoji(pkg.get("overall", "mixed"))
-    return {"response": reply, "emoji": emoji}
+    emoji = expressions_store.get_emoji(pkg.get("overall"))
+    return {"emoji": emoji, "response": reply}
 
 if __name__ == "__main__":
     print(generate_message())

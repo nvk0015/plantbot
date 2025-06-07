@@ -104,14 +104,15 @@
   <button id="btn-hello">👋 Say Hello</button>
   <select id="lang-select">
     <option value="en">English</option>
-    <option value="de">Deutsch</option>
+    <option value="de" selected>Deutsch</option>
   </select>
-  <button id="btn-talk">🔊 Talk</button>
+  <!-- neuer Talk-Button mit Zeitangabe -->
+  <button id="btn-talk">🔊 Talk (max 10 s)</button>
 
   <!-- Chat history -->
   <div id="chat"></div>
 
-  <!-- Input area with two send-buttons -->
+  <!-- Input area mit zwei Send-Buttons -->
   <div id="input-area">
     <textarea id="user-input" placeholder="Type your message…"></textarea>
     <button id="send-text">Send</button>
@@ -147,45 +148,48 @@
       append("plant", `${res.emoji}  ${res.response}`);
     };
 
-    // 🔊 Talk (just sensor-based)
+    // 🔊 Talk → STT-Pipeline + LLM + TTS
     document.getElementById("btn-talk").onclick = async () => {
-      const lang = langSel.value;
-      append("user", "🔊 Talk (" + lang + ")");
-      const res = await post("/hello", { mode: "speak", lang });
+      append("user", "🔊 Ich spreche…");
+      // include mode:"speak" so backend invokes TTS
+      const res = await post("/talk", { mode: "speak", lang: langSel.value });
+      append("user", res.user_text);
       append("plant", `${res.emoji}  ${res.response}`);
     };
 
-    // Unified send function
-    async function sendMessage(message, speak) {
-      append("user", message);
-      input.value = "";
-      const res = await post("/chat", {
-        mode: speak ? "speak" : "text",
-        lang: langSel.value,
-        user_input: message
-      });
-      if (res.error) {
-        append("plant", "❗ " + res.error);
-      } else {
-        append("plant", `${res.emoji}  ${res.response}`);
-      }
-    }
-
-    // Send (text only)
+    // Text-Chat senden
     document.getElementById("send-text").onclick = () => {
-      const text = input.value.trim();
-      if (!text) return;
-      sendMessage(text, false);
+      const msg = input.value.trim();
+      if (!msg) return;
+      append("user", msg);
+      input.value = "";
+      post("/chat", {
+        mode: "text",
+        lang: langSel.value,
+        user_input: msg
+      }).then(res => {
+        if (res.error) append("plant", "❗ " + res.error);
+        else append("plant", `${res.emoji}  ${res.response}`);
+      });
     };
 
-    // Send & Speak
+    // Text-Chat + TTS
     document.getElementById("send-speak").onclick = () => {
-      const text = input.value.trim();
-      if (!text) return;
-      sendMessage(text, true);
+      const msg = input.value.trim();
+      if (!msg) return;
+      append("user", msg);
+      input.value = "";
+      post("/chat", {
+        mode: "speak",
+        lang: langSel.value,
+        user_input: msg
+      }).then(res => {
+        if (res.error) append("plant", "❗ " + res.error);
+        else append("plant", `${res.emoji}  ${res.response}`);
+      });
     };
 
-    // Allow Enter to send text-only (Shift+Enter for newline)
+    // Enter → senden
     input.addEventListener("keydown", e => {
       if (e.key === "Enter" && !e.shiftKey) {
         e.preventDefault();

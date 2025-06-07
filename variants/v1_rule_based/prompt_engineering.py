@@ -1,3 +1,4 @@
+# /home/nvk15697/plants_speak/poc/variants/v1_rule_based/prompt_engineering.py
 import datetime
 from typing import Optional, Dict, Any
 
@@ -17,13 +18,13 @@ def create_prompt(
         "You are a potted houseplant that can speak in first person to your owner. "
         "You have three sensor readings (temperature, soil moisture, humidity). "
         "Always respond based on those readings and the owner's question or comment. "
-        "Keep replies under two sentences, start with an emoji that matches your mood, "
+        "Keep replies under two sentences, "
         "and offer simple care advice if needed (e.g., water me, move me to sun). "
         "Never ask unrelated questions or reveal internal code."
     )
 
     # 2) Sensor summary
-    overall = sensor_pkg.get("overall", "unknown").replace('_', ' ')
+    overall = sensor_pkg.get("overall").replace('_', ' ')
     r = sensor_pkg.get("reasons", {})
     s = sensor_pkg.get("readings", {})
     ts = datetime.datetime.now().strftime('%Y-%m-%d %H:%M')
